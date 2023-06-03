@@ -51,7 +51,7 @@ async function register(data) {
   }
   // Our register logic ends here
 }
-async function login(data) {
+async function login(data, res) {
   // Our login logic starts here
   try {
     // Get user input
@@ -59,7 +59,7 @@ async function login(data) {
 
     // Validate user input
     if (!(email && password)) {
-      return "All input is required";
+      return { error: "All input is required" };
     }
     // Validate if user exist in our database
     const user = await User.findOne({ email });
@@ -74,13 +74,19 @@ async function login(data) {
         }
       );
 
+      // set the token in a cookie
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: true, // Set the "Secure" flag
+      });
+
       // save user token
       user.token = token;
 
       // user token to routes
-      return token;
+      return { token: token };
     }
-    return "Invalid Credentials";
+    return { error: "Invalid Credentials" };
   } catch (err) {
     console.log(err);
   }

@@ -84,12 +84,14 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
   try {
-    const token = await userController.login(req.body);
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: true, // Set the "Secure" flag
-    });
-    res.redirect("/api");
+    const loginSuccess = await userController.login(req.body, res);
+    console.log(loginSuccess);
+    if (loginSuccess.error) {
+      res.redirect("/login");
+    } else {
+      console.log("login success");
+      res.redirect("/api");
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
@@ -97,7 +99,13 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-  res.render("login");
+  // hid login form if user is already logged in
+  const token = req.cookies.jwt;
+  if (!token) {
+    res.render("login");
+  } else {
+    res.redirect("/");
+  }
 });
 
 function verifyCustomHeader(req, res, next) {
