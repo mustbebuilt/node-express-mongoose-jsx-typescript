@@ -1,5 +1,5 @@
 // Import the necessary modules
-const Film = require('../models/Film');
+const Film = require("../models/Film");
 
 // Define the controller functions
 async function getAllData() {
@@ -9,8 +9,8 @@ async function getAllData() {
     console.dir(Film);
     return films;
   } catch (error) {
-    console.error('Error retrieving data:', error);
-    return { error: 'Failed to retrieve data' };
+    console.error("Error retrieving data:", error);
+    return { error: "Failed to retrieve data" };
   }
 }
 
@@ -20,8 +20,8 @@ async function getDataById(id) {
     const film = await Film.findById(id);
     return film;
   } catch (error) {
-    console.error('Error retrieving data:', error);
-    return { error: 'Failed to retrieve data' };
+    console.error("Error retrieving data:", error);
+    return { error: "Failed to retrieve data" };
   }
 }
 
@@ -32,34 +32,33 @@ async function createData(data) {
     console.log(newDocument);
     return newDocument;
   } catch (error) {
-    console.error('Error creating data:', error);
-    return { error: 'Failed to create data' };
+    console.error("Error creating data:", error);
+    return { error: "Failed to create data" };
   }
 }
 // update
 async function updateData(id, data) {
   try {
-    const updatedDocument = await Film.findByIdAndUpdate(id, data, { new: true });
+    const updatedDocument = await Film.findByIdAndUpdate(id, data, {
+      new: true,
+    });
     return updatedDocument;
   } catch (error) {
-    console.error('Error updating data:', error);
-    return { error: 'Failed to update data' };
+    console.error("Error updating data:", error);
+    return { error: "Failed to update data" };
   }
 }
 
-// delete 
+// delete
 async function deleteData(id) {
   try {
     const deletedDocument = await Film.findByIdAndDelete(id);
     return deletedDocument;
   } catch (error) {
-    console.error('Error deleting data:', error);
-    return { error: 'Failed to delete data' };
+    console.error("Error deleting data:", error);
+    return { error: "Failed to delete data" };
   }
 }
-
-
-
 
 // Export the controller functions
 module.exports = {
@@ -67,5 +66,5 @@ module.exports = {
   getDataById,
   createData,
   updateData,
-  deleteData
+  deleteData,
 };
