@@ -1,9 +1,10 @@
-require("dotenv").config();
-require("./db");
-const express = require("express");
-const app = express();
+import dotenv from "dotenv";
+import "./db";
+import express, { Application, Request, Response } from "express";
+import routes from "./routes/routes";
 
-const routes = require("./routes/routes");
+dotenv.config();
+const app: Application = express();
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // Mount the routes
 app.use("/", routes);
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
