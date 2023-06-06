@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const dataController = require("../controllers/controllers");
-const userController = require("../controllers/usercontroller");
-const auth = require("../auth");
 
 // GET /
 router.get("/", (req, res) => {
@@ -10,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 // GET /api
-router.get("/api", auth, async (req, res) => {
+router.get("/api", async (req, res) => {
   try {
     const data = await dataController.getAllData();
     res.json(data);
@@ -21,7 +19,7 @@ router.get("/api", auth, async (req, res) => {
 });
 
 // GET /api/:id
-router.get("/api/:id", verifyCustomHeader, async (req, res) => {
+router.get("/api/:id", async (req, res) => {
   try {
     const data = await dataController.getDataById(req.params.id);
     res.json(data);
@@ -68,56 +66,5 @@ router.delete("/api/:id", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-// Register
-router.post("/register", async (req, res) => {
-  try {
-    const data = await userController.register(req.body);
-    // res.json(data);
-    res.redirect("/login");
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-// Login
-router.post("/login", async (req, res) => {
-  try {
-    const loginSuccess = await userController.login(req.body, res);
-    console.log(loginSuccess);
-    if (loginSuccess.error) {
-      res.redirect("/login");
-    } else {
-      console.log("login success");
-      res.redirect("/api");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-router.get("/login", async (req, res) => {
-  // hid login form if user is already logged in
-  const token = req.cookies.jwt;
-  if (!token) {
-    res.render("login");
-  } else {
-    res.redirect("/");
-  }
-});
-
-function verifyCustomHeader(req, res, next) {
-  const expectedHeaderValue = "xyz";
-  const requestHeaderValue = req.headers["filmaccess"];
-  console.log(requestHeaderValue);
-  console.dir(req.headers);
-  if (requestHeaderValue !== expectedHeaderValue) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
-  next();
-}
 
 module.exports = router;
