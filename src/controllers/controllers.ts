@@ -1,5 +1,4 @@
 import Film, { IFilm } from "../models/Film";
-import { Document } from "mongoose";
 
 async function getAllData(): Promise<IFilm[] | { error: string }> {
 try {
