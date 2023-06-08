@@ -30,6 +30,43 @@ res.status(500).json({ error: "Internal Server Error" });
 }
 });
 
+// GET /api/filmName/:filmName
+router.get("/api/filmName/:filmName", async (req: Request, res: Response) => {
+    try {
+      const filmName = req.params.filmName;
+      const data = await dataController.getDataByName(filmName);
+      res.json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  // GET /api/filmCertificate/:filmCertificate
+router.get("/api/filmCertificate/:filmCertificate", async (req: Request, res: Response) => {
+    try {
+      const filmCertificate = req.params.filmCertificate;
+      const data = await dataController.getDataByCertificate(filmCertificate);
+      res.json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+  // GET /api/dateRange/:startDate/:endDate
+  router.get("/api/dateRange/:startDate/:endDate", async (req: Request, res: Response) => {
+    try {
+        const startDate = new Date(req.params.startDate);
+        const endDate = new Date(req.params.endDate);
+      const data = await dataController.getDataByDateRange(startDate, endDate);
+      res.json(data);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
 // POST /api
 router.post("/api", async (req: Request, res: Response) => {
 try {

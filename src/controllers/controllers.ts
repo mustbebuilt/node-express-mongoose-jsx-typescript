@@ -21,6 +21,45 @@ return { error: "Failed to retrieve data" };
 }
 }
 
+async function getDataByName(filmName: string): Promise<IFilm[] | { error: string }> {
+    try {
+        const regex = new RegExp(filmName, "i"); // Create a case-insensitive regular expression
+        const films: IFilm[] = await Film.find({ filmName: regex });
+        return films;
+      } catch (error) {
+        console.error("Error retrieving data:", error);
+        return { error: "Failed to retrieve data" };
+      }
+    }
+
+    async function getDataByCertificate(filmCertificate: string): Promise<IFilm[] | { error: string }> {
+        try {
+            const films: IFilm[] = await Film.find({ filmCertificate: filmCertificate });
+            return films;
+          } catch (error) {
+            console.error("Error retrieving data:", error);
+            return { error: "Failed to retrieve data" };
+          }
+        }
+
+        // Date range query
+        async function getDataByDateRange(startDate: Date, endDate: Date): Promise<IFilm[] | { error: string }> {
+            try {
+              const films: IFilm[] = await Film.find({
+                releaseDate: {
+                  $gte: startDate, // Greater than or equal to startDate
+                  $lte: endDate // Less than or equal to endDate
+                }
+              });
+              console.log(films);
+              return films;
+            } catch (error) {
+              console.error("Error retrieving data:", error);
+              return { error: "Failed to retrieve data" };
+            }
+          }
+
+
 async function createData(data: Partial<IFilm>): Promise<IFilm | { error: string }> {
 try {
 const newDocument: IFilm = await Film.create(data);
@@ -60,6 +99,9 @@ return { error: "Failed to delete data" };
 export {
 getAllData,
 getDataById,
+getDataByName,
+getDataByCertificate,
+getDataByDateRange,
 createData,
 updateData,
 deleteData,
