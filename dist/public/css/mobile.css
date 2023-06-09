@@ -1,0 +1,126 @@
+:root {
+    /* Primary Colors */
+    --color-primary: #FFC107;
+    /* Bright yellow */
+    --color-primary-light: #FFE082;
+    /* Lighter shade of yellow */
+    --color-primary-dark: #FFA000;
+    /* Darker shade of yellow */
+
+    /* Secondary Colors */
+    --color-secondary: #03A9F4;
+    /* Bright blue */
+    --color-secondary-light: #81D4FA;
+    /* Lighter shade of blue */
+    --color-secondary-dark: #0288D1;
+    /* Darker shade of blue */
+
+    /* Neutral Colors */
+    --color-background: #FFFFFF;
+    /* White */
+    --color-text: #333333;
+    /* Dark gray for text */
+
+    /* Additional Colors */
+    --color-accent: #FF5722;
+    /* Bright orange */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    overflow: auto;
+    flex-shrink: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+section img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.container {
+    padding:5px;
+}
+
+body > .container {
+    flex-grow: 1;
+}
+
+.error {
+    background-color: #F2011D;
+    color: #ffefef;
+    display: inline-block;
+    padding: 3px 5px;
+}
+
+.msg {
+    background-color: #F2811D;
+    color: #260707;
+    display: inline-block;
+    padding: 3px 5px;
+}
+
+.logReg label {
+    display: block;
+    margin-top: 5px;
+}
+
+.logReg input[type=text],
+.logReg input[type=password] {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #ccc;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+}
+
+.hide {
+    display: none;
+}
+
+footer{
+      height: 8vh;
+      flex-shrink: 0;
+      background-color: var(--color-secondary);
+      color: var(--color-background);
+}

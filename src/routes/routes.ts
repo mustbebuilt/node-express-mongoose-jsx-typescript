@@ -18,6 +18,16 @@ res.status(500).json({ error: "Internal Server Error" });
 }
   });
 
+  router.get("/film/:id", async (req: Request, res: Response) => {
+try {
+const data = await dataController.getDataById(req.params.id);
+res.render("filmDetails", { "film": data });
+} catch (err) {
+console.error(err);
+res.status(500).json({ error: "Internal Server Error" });
+}
+});
+
 // GET /api
 router.get("/api", async (req: Request, res: Response) => {
 try {

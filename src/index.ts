@@ -19,6 +19,9 @@ app.set("view engine", "ejs");
 // Mount the routes
 app.use("/", routes);
 
+// Serve static files
+app.use(express.static("./dist/public"));
+
 
 // Start the server
 app.listen(3000, () => {
