@@ -3,7 +3,7 @@ import Film, { IFilm } from "../models/Film";
 async function getAllData(): Promise<IFilm[] | { error: string }> {
 try {
 const films: IFilm[] = await Film.find();
-console.dir(Film);
+console.dir(films);
 return films;
 } catch (error) {
 console.error("Error retrieving data:", error);

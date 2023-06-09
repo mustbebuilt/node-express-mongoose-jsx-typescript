@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link
+      rel="stylesheet"
+      media="only screen and (min-width : 600px)"
+      href="/css/desktop.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2>All Films</h2>
+        <div class="topbarContainer">
+          <nav>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/allfilms">Film List</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <% if (locals.searchMsg) { %>
+      <p><%= searchMsg %></p>
+      <% } %>
+      <section class="wrap">
+        <% films.forEach(function(film){ %>
+
+        <div class="filmThumb">
+          <div>
+            <a href="/film/<%= film._id %>"
+              ><img
+                src="/images/<%= film.filmImage %>"
+                alt="<%= film.filmTitle %>"
+            /></a>
+          </div>
+          <h2><%= film.filmTitle %></h2>
+          <h3>
+            <a href="/film/<%= film._id %>"
+              >Title: <%= film.filmPrice %><%= film.filmTitle %></a
+            >
+          </h3>
+        </div>
+        <% }) %>
+      </section>
+    </div>
+    <footer>
+      <div class="container">&copy; 2022</div>
+    </footer>
+  </body>
+</html>

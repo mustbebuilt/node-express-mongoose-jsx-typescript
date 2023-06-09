@@ -8,6 +8,16 @@ router.get("/", (req: Request, res: Response) => {
 res.send("Hello, World!");
 });
 
+  router.get("/allfilms", async (req: Request, res: Response) => {
+try {
+const data = await dataController.getAllData();
+res.render("films", { "title": "All Films", "films": data });
+} catch (err) {
+console.error(err);
+res.status(500).json({ error: "Internal Server Error" });
+}
+  });
+
 // GET /api
 router.get("/api", async (req: Request, res: Response) => {
 try {

@@ -2,7 +2,7 @@ import mongoose, { Document, Model, Schema } from "mongoose";
 
 export interface IFilm extends Document {
   filmCertificate: string;
-  filmName: string;
+  filmTitle: string;
   filmDescription: string;
   filmImage: string;
   filmPrice: number;
@@ -13,7 +13,7 @@ export interface IFilm extends Document {
 const filmSchema: Schema<IFilm> = new mongoose.Schema(
   {
     filmCertificate: String,
-    filmName: String,
+    filmTitle: String,
     filmDescription: String,
     filmImage: String,
     filmPrice: Number,
