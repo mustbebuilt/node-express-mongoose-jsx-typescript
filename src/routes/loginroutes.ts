@@ -3,11 +3,11 @@ import * as loginController from "../controllers/logincontrollers";
 
 const router: Router = express.Router();
 
-router.get("/signup", (req: Request, res: Response) => { 
-  res.render("signup", { title: "Sign Up" , loggedIn : req.session.login });
+router.get("/register", (req: Request, res: Response) => { 
+  res.render("register", { title: "Register" , loggedIn : req.session.login });
 });
 
-router.post("/signup", loginController.createUser);
+router.post("/register", loginController.createUser);
 
 router.get("/login", (req: Request, res: Response) => { 
   res.render("login", { title: "Login", loggedIn : req.session.login });
