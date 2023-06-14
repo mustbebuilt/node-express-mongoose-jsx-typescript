@@ -1,10 +1,10 @@
 <%- include('partials/head') %>
 
     <div class="container">
-      <% if (locals.searchMsg) { %>
-      <p><%= searchMsg %></p>
-      <% } %>
-      <section class="wrap">
+      
+      <h1>Sheffield Streaming</h1>
+
+            <section class="home">
         <% films.forEach(function(film){ %>
 
         <div class="filmThumb">
@@ -21,6 +21,7 @@
         </div>
         <% }) %>
       </section>
+ 
     </div>
 <%- include('partials/footer') %>
   </body>

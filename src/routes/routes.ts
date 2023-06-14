@@ -4,11 +4,19 @@ import * as dataController from "../controllers/controllers";
 const router: Router = express.Router();
 
 // GET /
-router.get("/", (req: Request, res: Response) => {
-res.send("Hello, World!");
-});
 
-  router.get("/allfilms", async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
+try {
+const data = await dataController.getNewestFilms();
+res.render("index", { "title": "Sheffield Streaming", "films": data });
+} catch (err) {
+console.error(err);
+res.status(500).json({ error: "Internal Server Error" });
+}
+  });
+
+
+  router.get("/films", async (req: Request, res: Response) => {
 try {
 const data = await dataController.getAllData();
 res.render("films", { "title": "All Films", "films": data });
@@ -50,12 +58,12 @@ res.status(500).json({ error: "Internal Server Error" });
 }
 });
 
-// GET /api/filmName/:filmName
-router.get("/api/filmName/:filmName", async (req: Request, res: Response) => {
+// GET /api/filmTitle/:filmTitle
+router.get("/films/:filmTitle", async (req: Request, res: Response) => {
     try {
-      const filmName = req.params.filmName;
-      const data = await dataController.getDataByName(filmName);
-      res.json(data);
+      const filmTitle = req.params.filmTitle;
+      const data = await dataController.getDataByTitle(filmTitle);
+res.render("films", { "title": "Search Results", "films": data });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });

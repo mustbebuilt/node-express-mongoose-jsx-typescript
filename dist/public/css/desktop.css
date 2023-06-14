@@ -74,19 +74,23 @@ section {
 
 .wrap {
     flex-wrap: wrap;
+    gap:unset;
 }
 
-section>div.filmThumb {
-    padding: 10px;
+section.home>div.filmThumb {
+    width: calc((100% / 3));
+}
+
+section.wrap>div.filmThumb {
     width: calc((100% / 4));
 }
 
-section>div>h3>a {
+/* section>div>h3>a {
     font-weight: 100;
     margin: 0 0 15px 0;
     color: #000;
     text-decoration: none;
-}
+} */
 
 div.filmThumb>div {
     overflow: hidden;

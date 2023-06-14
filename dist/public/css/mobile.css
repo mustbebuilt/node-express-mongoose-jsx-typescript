@@ -60,16 +60,30 @@ main {
 section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    gap: 10px;
+}
+
+section.home{
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 section img {
     width: 100%;
     border-radius: 8px;
 }
+section>div>h3{
+    text-align: center;
+}
+section>div>h3>a {
+    font-weight: 100;
+    margin: 0 0 15px 0;
+    color: #000;
+    text-decoration: none;
+}
 
 .container {
-    padding:5px;
+    padding:10px;
+    width: 100%;
 }
 
 body > .container {

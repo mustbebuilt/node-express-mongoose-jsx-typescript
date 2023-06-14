@@ -12,6 +12,7 @@
       href="/css/desktop.css"
     />
     <link rel="stylesheet" href="/css/cms.css" />
+    <script src="/js/formsubmission.js" defer></script>
   </head>
   <body>
     <header>
@@ -21,14 +22,14 @@
           <nav>
             <ul>
               <li><a href="/">Home</a></li>
-              <li><a href="/allfilms">Film List</a></li>
+              <li><a href="/films">Film List</a></li>
               <li><a href="/cms">CMS</a></li>
             </ul>
           </nav>
           <div class="topbar">
             <div class="searchBox">
-              <form method="get" action="/search">
-                <input type="text" name="searchVal" />
+              <form method="get" id="searchForm">
+                <input type="text" id="filmTitle" />
                 <input type="submit" value="Search" />
               </form>
             </div>

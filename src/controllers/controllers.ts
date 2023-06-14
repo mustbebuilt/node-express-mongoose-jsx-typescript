@@ -3,7 +3,6 @@ import Film, { IFilm } from "../models/Film";
 async function getAllData(): Promise<IFilm[] | { error: string }> {
 try {
 const films: IFilm[] = await Film.find();
-console.dir(films);
 return films;
 } catch (error) {
 console.error("Error retrieving data:", error);
@@ -21,10 +20,24 @@ return { error: "Failed to retrieve data" };
 }
 }
 
-async function getDataByName(filmName: string): Promise<IFilm[] | { error: string }> {
+async function getNewestFilms(): Promise<IFilm[] | { error: string }> {
+  try {
+    const newestFilms: IFilm[] = await Film.find()
+      .sort({ releaseDate: -1 })
+      .limit(3);
+
+    return newestFilms;
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    return { error: "Failed to retrieve data" };
+  }
+}
+
+
+async function getDataByTitle(filmTitle: string): Promise<IFilm[] | { error: string }> {
     try {
-        const regex = new RegExp(filmName, "i"); // Create a case-insensitive regular expression
-        const films: IFilm[] = await Film.find({ filmName: regex });
+        const regex = new RegExp(filmTitle, "i"); // Create a case-insensitive regular expression
+        const films: IFilm[] = await Film.find({ filmTitle: regex });
         return films;
       } catch (error) {
         console.error("Error retrieving data:", error);
@@ -99,7 +112,8 @@ return { error: "Failed to delete data" };
 export {
 getAllData,
 getDataById,
-getDataByName,
+getNewestFilms,
+getDataByTitle,
 getDataByCertificate,
 getDataByDateRange,
 createData,
