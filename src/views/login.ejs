@@ -1,0 +1,21 @@
+<%- include('partials/head'); %>
+<div class="container">
+  <h1>Login</h1>
+
+  <form action="/login" method="post" class="logReg">
+    <div>
+      <label for="email">Username</label>
+      <input type="email" name="email" id="email" />
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="text" name="password" id="password" />
+    </div>
+
+    <div>
+      <input type="submit" value="Login" />
+    </div>
+  </form>
+</div>
+<%- include('partials/footer'); %>

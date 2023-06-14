@@ -8,7 +8,7 @@ const router: Router = express.Router();
 router.get("/", async (req: Request, res: Response) => {
 try {
 const data = await dataController.getNewestFilms();
-res.render("index", { "title": "Sheffield Streaming", "films": data });
+res.render("index", { "title": "Sheffield Streaming", "films": data , "loggedIn": req.session.login});
 } catch (err) {
 console.error(err);
 res.status(500).json({ error: "Internal Server Error" });
@@ -19,7 +19,7 @@ res.status(500).json({ error: "Internal Server Error" });
   router.get("/films", async (req: Request, res: Response) => {
 try {
 const data = await dataController.getAllData();
-res.render("films", { "title": "All Films", "films": data });
+res.render("films", { "title": "All Films", "films": data, "loggedIn": req.session.login });
 } catch (err) {
 console.error(err);
 res.status(500).json({ error: "Internal Server Error" });
@@ -29,7 +29,7 @@ res.status(500).json({ error: "Internal Server Error" });
   router.get("/film/:id", async (req: Request, res: Response) => {
 try {
 const data = await dataController.getDataById(req.params.id);
-res.render("filmDetails", { "film": data });
+res.render("filmDetails", { "title" : false, "film": data, "loggedIn": req.session.login });
 } catch (err) {
 console.error(err);
 res.status(500).json({ error: "Internal Server Error" });
@@ -63,7 +63,7 @@ router.get("/films/:filmTitle", async (req: Request, res: Response) => {
     try {
       const filmTitle = req.params.filmTitle;
       const data = await dataController.getDataByTitle(filmTitle);
-res.render("films", { "title": "Search Results", "films": data });
+res.render("films", { "title": "Search Results", "films": data, "loggedIn": req.session.login});
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });

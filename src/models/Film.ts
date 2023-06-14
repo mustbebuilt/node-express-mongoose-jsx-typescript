@@ -1,6 +1,6 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
-export interface IFilm extends Document {
+interface IFilm extends Document {
   filmCertificate: string;
   filmTitle: string;
   filmDescription: string;
@@ -23,6 +23,5 @@ const filmSchema: Schema<IFilm> = new mongoose.Schema(
   { collection: "filmsCollection" } // Specify the collection name
 );
 
-const Film: Model<IFilm> = mongoose.model<IFilm>("Film", filmSchema);
-
-export default Film;
+export const Film: Model<IFilm> = mongoose.model<IFilm>("Film", filmSchema);
+export { IFilm };

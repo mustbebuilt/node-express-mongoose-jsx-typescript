@@ -5,7 +5,7 @@ import * as cmsController from "../controllers/cmscontrollers";
 const router: Router = express.Router();
 
 // add POST, PUT AND DELETE ROUTES
-router.get("/cms/", async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
   try {
     const data = await dataController.getAllData();
     res.render("cms", { title: "All Films", films: data });
@@ -15,11 +15,11 @@ router.get("/cms/", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/cms/insert", (req: Request, res: Response) => {
+router.get("/insert", (req: Request, res: Response) => {
   res.render("insert", { title: "Insert Film" });
 });
 
-router.post("/cms/insert", async (req: Request, res: Response) => {
+router.post("/insert", async (req: Request, res: Response) => {
   try {
     console.log(req.body);
     const newData = await cmsController.createData(req.body);
@@ -31,7 +31,7 @@ router.post("/cms/insert", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/cms/edit/:id", async (req: Request, res: Response) => {
+router.get("/edit/:id", async (req: Request, res: Response) => {
   try {
     const data = await dataController.getDataById(req.params.id);
     res.render("edit", { title: "Edit Film", film: data });
@@ -41,7 +41,7 @@ router.get("/cms/edit/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/cms/edit", async (req: Request, res: Response) => {
+router.post("/edit", async (req: Request, res: Response) => {
   try {
     const deletedData = await cmsController.updateData(req.body.id, req.body);
     res.redirect("/cms/");
@@ -53,7 +53,7 @@ router.post("/cms/edit", async (req: Request, res: Response) => {
 
 // DELETE
 
-router.get("/cms/delete/:id", async (req: Request, res: Response) => {
+router.get("/delete/:id", async (req: Request, res: Response) => {
   try {
     const data = await dataController.getDataById(req.params.id);
     res.render("delete", { title: "Delete Film", film: data });
@@ -63,7 +63,7 @@ router.get("/cms/delete/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/cms/delete", async (req: Request, res: Response) => {
+router.post("/delete", async (req: Request, res: Response) => {
   try {
     const deletedData = await cmsController.deleteData(req.body.filmID);
     res.redirect("/cms/");

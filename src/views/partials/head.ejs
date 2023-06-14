@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= title %></title>
+    <title><%= title || film.filmTitle %></title>
     <link rel="stylesheet" href="/css/mobile.css" />
     <link
       rel="stylesheet"
@@ -22,7 +22,13 @@
             <ul>
               <li><a href="/">Home</a></li>
               <li><a href="/films">Film List</a></li>
+              <% if (loggedIn) { %>
               <li><a href="/cms">CMS</a></li>
+              <li><a href="/logout">Logout</a></li>
+              <% } else { %>
+              <li><a href="/signup">Register</a></li>
+              <li><a href="/login">Login</a></li>
+              <% } %>
             </ul>
           </nav>
           <div class="topbar">

@@ -1,4 +1,4 @@
-import Film, { IFilm } from "../models/Film";
+import { Film, IFilm } from "../models/Film";
 
 async function createData(
   data: Partial<IFilm>
