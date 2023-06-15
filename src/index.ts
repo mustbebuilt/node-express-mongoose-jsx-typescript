@@ -35,8 +35,7 @@ app.use("/cms", auth, cmsroutes);
 app.use("/", loginroutes);
 
 // Serve static files
-app.use(express.static("./dist/public"));
-
+app.use(express.static("src/public"));
 
 // Start the server
 app.listen(3000, () => {
