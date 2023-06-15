@@ -9,7 +9,8 @@ async function createUser(req: Request, res: Response): Promise<void> {
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400).json({ error: 'User already exists' });
+      // res.status(400).json({ error: 'User already exists' });
+      res.render('register', { title: "Register", error: 'User already exists', loggedIn: false });
       return;
     }
 
@@ -29,7 +30,8 @@ async function createUser(req: Request, res: Response): Promise<void> {
     res.redirect('/login');
   } catch (error) {
     console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Failed to create user' });
+    // res.status(500).json({ error: 'Failed to create user' });
+    res.render('register', { title: "Register", error: 'Failed to create user', loggedIn: false });
   }
 }
 
@@ -40,14 +42,16 @@ async function loginUser(req: Request, res: Response): Promise<void> {
     // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(401).json({ error: 'Invalid email or password' });
+      // res.status(401).json({ error: 'Invalid email or password' });
+      res.render('login', { title: "Login", error: 'Invalid email or password', loggedIn: false });
       return;
     }
 
     // Compare the provided password with the stored hashed password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      res.status(401).json({ error: 'Invalid email or password' });
+      // res.status(401).json({ error: 'Invalid email or password' });
+      res.render('login', { title: "Login", error: 'Invalid email or password', loggedIn: false });
       return;
     }
 
@@ -60,7 +64,9 @@ async function loginUser(req: Request, res: Response): Promise<void> {
     res.redirect('/cms');
     } catch (error) {
     console.error('Error logging in user:', error);
-    res.status(500).json({ error: 'Failed to login user' });
+    // res.status(500).json({ error: 'Failed to login user' });
+    res.render('login', { title: "Login", error: 'Failed to login user', loggedIn: false });
+      
   }
 }
 
