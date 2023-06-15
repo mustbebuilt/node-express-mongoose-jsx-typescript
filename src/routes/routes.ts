@@ -10,8 +10,7 @@ try {
 const data = await dataController.getNewestFilms();
 res.render("index", { "title": "Sheffield Streaming", "films": data , "loggedIn": req.session.login});
 } catch (err) {
-console.error(err);
-res.status(500).json({ error: "Internal Server Error" });
+ res.status(404).send("Page not found");
 }
   });
 
@@ -21,8 +20,7 @@ try {
 const data = await dataController.getAllData();
 res.render("films", { "title": "All Films", "films": data, "loggedIn": req.session.login });
 } catch (err) {
-console.error(err);
-res.status(500).json({ error: "Internal Server Error" });
+ res.status(404).send("Page not found");
 }
   });
 
@@ -31,8 +29,7 @@ try {
 const data = await dataController.getDataById(req.params.id);
 res.render("filmDetails", { "title" : false, "film": data, "loggedIn": req.session.login });
 } catch (err) {
-console.error(err);
-res.status(500).json({ error: "Internal Server Error" });
+ res.status(404).send("Page not found");
 }
 });
 
