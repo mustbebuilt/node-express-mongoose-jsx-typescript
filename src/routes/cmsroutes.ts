@@ -43,7 +43,7 @@ router.get("/edit/:id", async (req: Request, res: Response) => {
 
 router.post("/edit", async (req: Request, res: Response) => {
   try {
-    const deletedData = await cmsController.updateData(req.body.id, req.body);
+    const updatedData = await cmsController.updateData(req.body.id, req.body);
     res.redirect("/cms/");
   } catch (err) {
     console.error(err);
