@@ -106,16 +106,19 @@ body>.container {
     padding: 3px 5px;
 }
 
-.logReg label {
+label {
     display: block;
     margin-top: 5px;
 }
 
-.logReg input[type=email],
-.logReg input[type=text],
-.logReg input[type=password] {
+input[type=email],
+input[type=text],
+input[type=password],
+input[type=date],
+textarea {
     padding: 5px;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 table {
