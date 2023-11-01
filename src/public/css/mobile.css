@@ -30,7 +30,7 @@
     box-sizing: border-box;
 }
 
-html{
+html {
     height: 100%;
 }
 
@@ -63,7 +63,7 @@ section {
     gap: 10px;
 }
 
-section.home{
+section.home {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -71,9 +71,11 @@ section img {
     width: 100%;
     border-radius: 8px;
 }
-section>div>h3{
+
+section>div>h3 {
     text-align: center;
 }
+
 section>div>h3>a {
     font-weight: 100;
     margin: 0 0 15px 0;
@@ -82,11 +84,11 @@ section>div>h3>a {
 }
 
 .container {
-    padding:10px;
+    padding: 10px;
     width: 100%;
 }
 
-body > .container {
+body>.container {
     flex-grow: 1;
 }
 
@@ -109,6 +111,7 @@ body > .container {
     margin-top: 5px;
 }
 
+.logReg input[type=email],
 .logReg input[type=text],
 .logReg input[type=password] {
     padding: 5px;
@@ -120,21 +123,48 @@ table {
 }
 
 th {
-    background-color: #ccc;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    padding: 4px;
 }
 
-td,
-th {
-    border: 1px solid #ccc;
+/* Add padding and text alignment for mobile cells */
+td {
+    padding: 4px;
+}
+
+/* Add space between rows */
+tr:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .hide {
     display: none;
 }
 
-footer{
-      height: 8vh;
-      flex-shrink: 0;
-      background-color: var(--color-secondary);
-      color: var(--color-background);
+/* Button styles */
+.edit,
+.delete {
+    display: inline-block;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+footer {
+    height: 8vh;
+    flex-shrink: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
 }

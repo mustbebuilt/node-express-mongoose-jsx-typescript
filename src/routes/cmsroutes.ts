@@ -7,8 +7,12 @@ const router: Router = express.Router();
 // add POST, PUT AND DELETE ROUTES
 router.get("/", async (req: Request, res: Response) => {
   try {
+    // Access the user's email from the session
+    // const userEmail = req.session.email;
     const data = await dataController.getAllData();
     res.render("cms", { title: "All Films", films: data });
+    // use this to pass the user's email to the view
+    //res.render("cms", { title: "All Films", films: data, userEmail: userEmail });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });

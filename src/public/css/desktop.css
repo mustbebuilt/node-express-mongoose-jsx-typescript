@@ -74,7 +74,7 @@ section {
 
 .wrap {
     flex-wrap: wrap;
-    gap:unset;
+    gap: unset;
 }
 
 section.home>div.filmThumb {
@@ -145,6 +145,11 @@ input[type=number] {
     text-decoration: none;
     background-color: var(--button-color);
     padding: 10px 25px;
+}
+
+td {
+    padding: 8px 5px;
+    border-bottom: 1px solid #ddd;
 }
 
 .fullWidth {

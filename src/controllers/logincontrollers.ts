@@ -59,14 +59,15 @@ async function loginUser(req: Request, res: Response): Promise<void> {
     // req.session.user = user;
     console.dir(req.session)
     req.session.login = true;
+    req.session.email = email;
 
     // res.status(200).json({ message: 'User logged in successfully' });
     res.redirect('/cms');
-    } catch (error) {
+  } catch (error) {
     console.error('Error logging in user:', error);
     // res.status(500).json({ error: 'Failed to login user' });
     res.render('login', { title: "Login", error: 'Failed to login user', loggedIn: false });
-      
+
   }
 }
 
