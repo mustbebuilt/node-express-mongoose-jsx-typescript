@@ -1,7 +1,10 @@
 <%- include('partials/headcms') %>
 <div class="container">
-  <h1>Delete Film: <%= film.filmTitle %></h1>
+
   <form method="post" action="/cms/delete">
+    <div>
+        <h1>Delete Film: <%= film.filmTitle %></h1>
+    </div>
     <input type="hidden" name="filmID" id="filmID" value="<%= film._id  %>" />
     <div>
       <input type="submit" value="Delete" class="delete" />

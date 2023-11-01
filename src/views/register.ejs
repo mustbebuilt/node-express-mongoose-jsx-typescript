@@ -1,12 +1,17 @@
 <%- include('partials/head'); %>
 <div class="container">
-  <h1>Register</h1>
+ 
+
+  <form action="/register" method="post" class="logReg">
+
+    <div>
+       <h1>Register</h1>
 
   <% if (locals.error) { %>
   <p class="error"><%= error %></p>
   <% } %>
+    </div>
 
-  <form action="/register" method="post" class="logReg">
     <div>
       <label for="email">Username</label>
       <input type="text" name="email" id="email" />

@@ -1,10 +1,12 @@
 <%- include('partials/headcms') %>
 <div class="container">
-  <h1><%= film.filmName %></h1>
-  <p><%= film.filmDesc %></p>
 
-  <form method="post" action="/cms/edit">
+
+  <form method="post" action="/cms/edit" class="main">
     <input type="hidden" name="id" id="id" value="<%= film._id  %>" />
+    <div>
+        <h1>Edit: <%=film.filmTitle %></h1>
+    </div>
     <div>
       <label for="filmTitle">Film Name</label>
       <input

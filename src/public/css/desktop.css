@@ -138,13 +138,15 @@ input[type=number] {
     padding: 5px;
 }
 
-form {
+form.main,
+form.logReg {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-form>div {
+form.main>div,
+form.logReg>div {
     min-width: 400px;
     width: 50%;
 }

@@ -1,8 +1,11 @@
 <%- include('partials/headcms') %>
 <div class="container">
-  <h1>Add New Film</h1>
 
-  <form method="post" action="/cms/insert">
+
+  <form method="post" action="/cms/insert" class="main">
+    <div>
+        <h1>Add New Film</h1>
+    </div>
     <div>
       <label for="filmName">Film Title</label>
       <input type="text" name="filmTitle" id="filmTitle" />
